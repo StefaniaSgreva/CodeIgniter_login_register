@@ -6,6 +6,11 @@
                     <?= session()->get('success') ?>
                 </div>
             <?php endif; ?> 
+            <?php if (isset($validation)) : ?>
+                <div class="alert alert-danger" role="alert">
+                    <?= $validation->listErrors() ?>
+                </div>
+            <?php endif; ?>
             <div class="container">
                 <h3>Login</h3>
                 <hr>
