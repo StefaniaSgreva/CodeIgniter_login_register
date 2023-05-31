@@ -20,7 +20,7 @@ body{
     .form-wrapper .text-end{
         text-align: center !important;
     }
-    .form-wrapper .btn-primary{
+    .form-wrapper .btn-outline-secondary{
         display: block;
         margin: 0 auto;
     }
