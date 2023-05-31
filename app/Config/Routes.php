@@ -32,6 +32,8 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Users::index');
 
 $routes->match(['get', 'post'],'register', 'Users::register');
+$routes->match(['get', 'post'],'profile', 'Users::profile');
+
 
 
 

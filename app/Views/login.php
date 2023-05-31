@@ -28,7 +28,7 @@
                         <a href="/register">Don't have an account yet?</a>
                         </div>
                         <div class="col-12 col-sm-4 text-end">
-                            <button type="submit" class="btn btn-primary">Login</button>
+                            <button type="submit" class="btn btn-outline-secondary">Login</button>
                         </div>
                     </div>
                 </form>

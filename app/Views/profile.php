@@ -7,27 +7,34 @@
                 </div>
             <?php endif; ?> 
             <div class="container">
-                <h3>Register</h3>
-                <hr>
-                <form class="" action="/register" method="post">
+                <h3><?= $user['firstname'].' '.$user['lastname'] ?></h3>
+                <hr>  
+                <?php if (session()->get('success')) : ?>
+                <div class="alert alert-success" role="alert">
+                    <?= session()->get('success') ?>
+                </div>
+                <?php endif; ?> 
+                <form class="" action="/profile" method="post">
                     <div class="row">
                         <div class="col-12 col-sm-6 mb-3">
                             <div class="form-group">
                                 <label for="firstname" class="form-label">First Name</label>
-                                <input type="text" class="form-control" name="firstname" id="firstname" value="<?= set_value('firstname') ?>">
+                                <input type="text" class="form-control" name="firstname" id="firstname" value="<?= set_value('firstname', $user['firstname']) ?>">
                             </div>
                         </div>
                         <div class="col-12 col-sm-6 mb-3">
                             <div class="form-group">
                                 <label for="lastname" class="form-label">Last Name</label>
-                                <input type="text" class="form-control" name="lastname" id="lastname" value="<?= set_value('lastname') ?>">
+                                <input type="text" class="form-control" name="lastname" id="lastname" value="<?= set_value('lastname', $user['lastname']) ?>">
                             </div>
                         </div>
                         <div class="col-12 mb-3">
-                            <div class="form-group">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="text" class="form-control" name="email" id="email" value="<?= set_value('email') ?>">
-                            </div>
+                            <fieldset disabled>
+                                <div class="form-group">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="text" class="form-control" readonly id="email" value="<?= set_value('email',$user['email']) ?>">
+                                </div>
+                            </fieldset>
                         </div>
                         <div class="col-12 col-sm-6 mb-3">
                             <div class="form-group">
@@ -44,11 +51,8 @@
                        
 
                         <div class="row my-3 mx-0">
-                            <div class="col-12 col-sm-8 my-auto">
-                                <a href="/">Alredy have an account</a>
-                            </div>
-                            <div class="col-12 col-sm-4 text-end">
-                                <button type="submit" class="btn btn-outline-secondary">Register</button>
+                            <div class="col-12 text-end">
+                                <button type="submit" class="btn btn-outline-secondary">Update</button>
                             </div>
                         </div>
                     </div>

@@ -95,4 +95,47 @@ class Users extends BaseController
         echo view('templates/footer');
     }
 
+    public function profile(){
+        $data = [];
+        helper(['form']);
+        $model = new UserModel();
+
+        if($this->request->is('post')){
+            //Let's do the validation here
+            $rules = [
+                'firstname' => 'required|min_length[3]|max_length[20]',
+                'lastname' => 'required|min_length[3]|max_length[20]',
+            ];
+
+            if($this->request->is('post') != ''){
+                $rules['password'] = 'required|min_length[8]|max_length[255]';
+                $rules['password_confirm'] = 'matches[password]';
+            }
+
+            if(! $this->validate($rules)){
+                $data['validation'] = $this->validator;
+            }else{
+                //store the user in our db
+                $newData = [
+                    'id' => session()->get('id'),
+                    'firstname' => $this->request->getPost('firstname'),
+                    'lastname' => $this->request->getPost('lastname'),
+                ];
+                if($this->request->is('post') != ''){
+                    $newData['password'] = $this->request->getPost('password');
+                }
+                $model->save($newData);
+               
+                session()->setFlashdata('success', 'Successfully Updated');
+                return redirect()->to('/profile');
+            }
+        }
+
+        $data['user'] = $model->where('id', session()->get('id'))->first();
+
+        echo view('templates/header', $data);
+        echo view('profile');
+        echo view('templates/footer');
+    }
+
 }
